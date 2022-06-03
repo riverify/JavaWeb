@@ -5,6 +5,16 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <!-- 给实体类配置别名 -->
+    <typeAliases>
+
+        <!-- 给指定实体类起别名 -->
+        <!--        <typeAlias type="com.river.entity.Employee" alias="E"></typeAlias>-->
+        <!-- 给包起别名: 包下所有类的别名就是当前类名 -->
+        <package name="com.river.entity"/>
+
+    </typeAliases>
+
     <environments default="mysql">
 
         <!--　MySql数据库连接　-->

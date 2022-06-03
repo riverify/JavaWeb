@@ -3,14 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="a.b">
+<mapper namespace="com.river.mapper.EMPMapper">
 
     <!-- id: 方法名称
          resultType: 返回值类型
     -->
-    <select id="selectAll" resultType="com.river.entity.Employee">
+    <select id="selectAll" resultType="employee">
 
-        select * from EMP
+        select *
+        from EMP
 
     </select>
 </mapper>

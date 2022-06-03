@@ -6,9 +6,9 @@
 <mapper namespace="com.river.mapper.EMPMapper">
 
     <!-- id: 方法名称
-         resultType: 返回值类型
+         resultType: 返回值类型, 使用了别名，首字母一般小写
     -->
-    <select id="selectAll" resultType="com.river.entity.Employee">
+    <select id="selectAll" resultType="employee">
 
         select *
         from EMP
