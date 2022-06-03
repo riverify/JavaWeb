@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <environments default="mysql">
+
+        <!--　MySql数据库连接　-->
+        <environment id="mysql">
+
+            <!-- MyBatis数据库事务管理 -->
+            <transactionManager type="JDBC"></transactionManager>
+
+            <!-- 底层使用连接池链接数据库 -->
+            <dataSource type="POOLED">
+
+                <!--  -->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url"
+                          value="jdbc:mysql://127.0.0.1:3306/mydb?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=Asia/Shanghai"/>
+                <property name="username" value="river"/>
+                <property name="password" value="20020126"/>
+
+            </dataSource>
+
+        </environment>
+
+    </environments>
+
+    <!-- 进行mapper文件的扫描 -->
+    <mappers>
+        <!-- resource: ＸＭＬ所在目录 -->
+        <mapper resource="com/river/mapper/EMPMapper.xml"></mapper>
+
+    </mappers>
+
+</configuration>
