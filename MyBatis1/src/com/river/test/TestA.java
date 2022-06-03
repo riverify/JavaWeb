@@ -22,7 +22,7 @@ public class TestA {
         SqlSession sqlSession = factory.openSession();
 
         // 4.调用方法
-        List<Employee> employees = sqlSession.selectList("a.b.selectAll");
+        List<Employee> employees = sqlSession.selectList("com.river.mapper.EMPMapper.selectAll");
 
         System.out.println(employees);
 
