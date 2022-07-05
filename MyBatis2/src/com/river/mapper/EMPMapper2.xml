@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.river.mapper.EMPMapper2">
+
+    <!--"java.lang.Integer"有内置别名int(mybatis内置很多的常见类型别名)-->
+    <select id="selectOne" resultType="employee" parameterType="int">
+        select *
+        from EMP
+        where EMPNO = #{param1}
+    </select>
+
+    <select id="selectOne2" resultType="employee" parameterType="employee">
+        select *
+        from EMP
+        where EMPNO = #{empno}
+          and ENAME = #{ename}
+    </select>
+
+    <select id="selectOne3" resultType="employee" parameterType="map">
+        <!-- #：占位；　$：拼接 -->
+        select * from EMP where EMPNO = #{a} and ENAME = #{b}
+    </select>
+
+</mapper>

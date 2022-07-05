@@ -10,4 +10,16 @@
         from EMP;
     </select>
 
+    <select id="selectOne" resultType="employee">
+        select *
+        from EMP
+        where empno = 7369
+    </select>
+
+    <!--"java.util.Map"有内置别名map(mybatis内置很多的常见类型别名)-->
+    <select id="selectMap" resultType="map">
+        select *
+        from EMP
+    </select>
+
 </mapper>
