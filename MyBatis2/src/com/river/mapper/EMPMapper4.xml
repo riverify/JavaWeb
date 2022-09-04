@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 使用代理方式，namespace必须为接口所在全路径 -->
+<mapper namespace="com.river.mapper.EMPMapper4">
+
+    <select id="selectAll" resultType="employee">
+        select *
+        from EMP;
+    </select>
+
+    <insert id="insert" parameterType="employee">
+        insert into EMP
+        values (default, #{ename}, #{job}, #{mgr}, #{hiredate}, #{sal}, #{comm}, #{deptno})
+    </insert>
+
+    <select id="selectOne" resultType="employee">
+        select *
+        from EMP
+        where empno = #{param1}
+          and ename = #{param2}
+    </select>
+
+    <select id="selectOne2" resultType="employee">
+        select *
+        from EMP
+        where empno = #{param1.empno}
+          and ename = #{params2.ename}
+    </select>
+
+</mapper>

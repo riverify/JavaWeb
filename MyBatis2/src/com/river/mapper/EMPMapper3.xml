@@ -7,6 +7,21 @@
 
 
     <!-- 添加操作 -->
-    <insert id="insert"
+    <insert id="insert" parameterType="employee">
+        insert into EMP
+        values (default, #{ename}, #{job}, #{mgr}, #{hiredate}, #{sal}, #{comm}, #{deptno})
+    </insert>
+
+    <!-- 修改操作 -->
+    <update id="update"> <!-- parameterType 自动判断 -->
+        update EMP set sal = #{sal} where empno = #{empno}
+    </update>
+
+    <!-- 删除操作 -->
+    <delete id="delete">
+        delete
+        from EMP
+        where empno = #{param1}
+    </delete>
 
 </mapper>

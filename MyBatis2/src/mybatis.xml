@@ -50,9 +50,10 @@
     <!-- 进行mapper文件的扫描 -->
     <mappers>
         <!-- resource: ＸＭＬ所在目录的地址 -->
-        <mapper resource="com/river/mapper/EMPMapper.xml"></mapper>
-        <mapper resource="com/river/mapper/EMPMapper2.xml"></mapper>
-        <mapper resource="com/river/mapper/EMPMapper3.xml"></mapper>
+        <mapper resource="com/river/mapper/EMPMapper.xml"/>
+        <mapper resource="com/river/mapper/EMPMapper2.xml"/>
+        <mapper resource="com/river/mapper/EMPMapper3.xml"/>
+        <mapper resource="com/river/mapper/EMPMapper4.xml"/>
 
     </mappers>
 

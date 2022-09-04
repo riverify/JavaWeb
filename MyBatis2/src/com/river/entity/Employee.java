@@ -82,7 +82,12 @@ public class Employee {
         return hireDate;
     }
 
-    public void setHireDate(Date hireDate) {
+    public Date getHiredate() {
+        return hireDate;
+    }
+
+
+    public void setHireDate(java.sql.Date hireDate) {
         this.hireDate = hireDate;
     }
 
