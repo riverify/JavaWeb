@@ -53,7 +53,10 @@
         <mapper resource="com/river/mapper/EMPMapper.xml"/>
         <mapper resource="com/river/mapper/EMPMapper2.xml"/>
         <mapper resource="com/river/mapper/EMPMapper3.xml"/>
-        <mapper resource="com/river/mapper/EMPMapper4.xml"/>
+        <!--        <mapper resource="com/river/mapper/EMPMapper4.xml"/>-->
+
+        <!-- 扫描package　name下的所有接口，再扫描接口同名的ＸＭＬ文件 -->
+        <package name="com/river/mapper"/>
 
     </mappers>
 
