@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.river.mapper.EMPMapper">
+
+    <!--  IF 标签  -->
+    <select id="selectMore" resultType="employee">
+        select * from EMP where 1 = 1
+        <!-- OGNL -->
+        <if test="param1 != null and param1 != ''">
+            and job = #{param1}
+        </if>
+
+        <if test="param2 != 0">
+            and deptno = #{param2}
+        </if>
+    </select>
+
+    <!-- WHERE 标签 : 会自动增加where关键字，并且会把多余的第一个and去掉  -->
+    <select id="selectMore2" resultType="employee">
+        select * from EMP
+        <where>
+            <if test="param1 != null and param1 != ''">
+                job = #{param1}
+            </if>
+
+            <if test="param2 != 0">
+                and deptno = #{param2}
+            </if>
+        </where>
+    </select>
+
+    <!-- choose when : 选中一个就放弃接下来的的 -->
+    <select id="selectMore3" resultType="employee">
+
+        select * from EMP
+        <where>
+            <choose>
+                <when test="param1 != null and param1 != ''">
+                    job = #{param1}
+                </when>
+                <when test="param1 != 0">
+                    and deptno = #{param2}
+                </when>
+            </choose>
+        </where>
+    </select>
+
+    <!-- SET 标签 : 自动增加set关键字,并去除最后一个逗号 -->
+    <update id="update" parameterType="employee">
+        update EMP
+        <set>
+            <if test="job != null and job != ''">
+                job = #{job},
+            </if>
+            <if test="sal != 0">
+                sal = #{sal}
+            </if>
+        </set>
+        where empno = #{empno}
+    </update>
+
+    <!-- TRIM 标签 :  -->
+    <update id="update2" parameterType="employee">
+        update EMP
+        <trim prefix="set" suffixOverrides=",">  <!-- prefix : 添加前缀 |  suffixOverrides : 去除后缀 -->
+            <if test="job != null and job != ''">
+                job = #{job},
+            </if>
+            <if test="sal != 0">
+                sal = #{sal}
+            </if>
+        </trim>
+        where empno = #{empno}
+    </update>
+
+</mapper>

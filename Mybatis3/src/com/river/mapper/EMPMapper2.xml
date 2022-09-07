@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.river.mapper.EMPMapper2">
+
+
+    <!--    <select id="selectMore2" resultType="employee">-->
+
+    <!--        select * from EMP-->
+    <!--        <where>-->
+    <!--            <if test="param1 != null and param1 != ''">-->
+    <!--                ename like '%${param1}%'  &lt;!&ndash; 使用${}拼接　&ndash;&gt;-->
+    <!--            </if>-->
+    <!--        </where>-->
+
+    <!--    </select>-->
+
+
+    <select id="selectMore2" resultType="employee">
+
+        select * from EMP
+        <where>
+            <if test="param1 != null and param1 != ''">
+                <bind name="pa" value="'%' + param1 + '%'"/>
+                ename like #{pa}
+            </if>
+        </where>
+
+    </select>
+
+
+    <!-- SQL ：　定义一个公共代码片段，方便日后使用，需配合include使用 　 -->
+    <sql id="sq1">
+        empno
+        , ename, deptno, sal
+    </sql>
+
+    <!-- FOREACH -->
+    <select id="selectMore" resultType="employee">
+
+        select <include refid="sq1"></include> from EMP where empno in
+        <foreach collection="list" open="(" close=")" separator="," item="item">
+            #{item}
+        </foreach>
+
+    </select>
+
+</mapper>
