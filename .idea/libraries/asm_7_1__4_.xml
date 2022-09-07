@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="asm-7.1 (4)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Mybatis4/lib/asm-7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Mybatis4/lib/cglib-3.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Mybatis4/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Mybatis4/lib/javassist-3.29.0-GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Mybatis4/lib/log4j-api-2.17.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Mybatis4/lib/mybatis-3.5.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Mybatis4/lib/mysql-connector-java-8.0.25.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Mybatis4/lib/ognl-3.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Mybatis4/lib/reload4j-1.2.21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Mybatis4/lib/slf4j-api-1.7.36.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Mybatis4/lib/slf4j-log4j12-1.7.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
