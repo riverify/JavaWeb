@@ -7,7 +7,7 @@
 
     <select id="selectOne" resultType="clazz">
         select *
-        from Clazz
+        from clazz
         where clazzno = #{param1}
     </select>
 

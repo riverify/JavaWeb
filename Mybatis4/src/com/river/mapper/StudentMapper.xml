@@ -6,7 +6,7 @@
 <mapper namespace="com.river.mapper.StudentMapper">
     <select id="selectAll" resultType="student">
         select *
-        from Student
+        from student
     </select>
 
 </mapper>
