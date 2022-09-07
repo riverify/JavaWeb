@@ -16,7 +16,7 @@ import java.util.List;
 
 // 多表查询的第一种方法　业务代码
 
-public class TestB {
+public class TestA1 {
     public static void main(String[] args) throws IOException {
         // 解析xml文件
         InputStream inputStream = Resources.getResourceAsStream("mybatis.xml");
@@ -32,30 +32,18 @@ public class TestB {
         ClazzMapper clazzMapper = sqlSession.getMapper(ClazzMapper.class);
 
         // 查询所有学生所在的班级信息
-        // a查询所有班级的信息
-        List<Clazz> clazzes = clazzMapper.selectAll();
+        // a查询所有学生信息
+        List<Student> students = studentMapper.selectAll();
 
-        // b查询班级中对应的学生的信息
-
-//        for (Clazz clazz : clazzes) {
-//            // 获取指定班级的所有学生信息
-//            List<Student> students = studentMapper.selectMore(clazz.getClazzno());
-//            // 遍历该班级学生
-//            for (Student student : students) {
-//                // 为该班级学生set该Clazz对象
-//                student.setCla(clazz);
-//                // 打印该学生所有信息
-//                System.out.println(student);
-//            }
-//        }
-
-        for (Clazz clazz : clazzes) {
-            // 获取指定班级的所有学生信息
-            List<Student> students = studentMapper.selectMore(clazz.getClazzno());
-            // 将学生集合保存进该clazz对象中
-            clazz.setStd(students);
+        // b查询所有学生班级号的班级信息
+        for (Student student : students) {
+//            System.out.println(student.getSname() + " ==> "
+//                    + clazzMapper.selectOne(student.getClazzno()).getCname());
+            Clazz cla = clazzMapper.selectOne(student.getClazzno());
+            // 将查询的Clazz对象存入Student对象中
+            student.setCla(cla);
             // 打印输出
-            System.out.println(clazz);
+            System.out.println(student);
         }
 
 
