@@ -1,5 +1,6 @@
 package com.river.test;
 
+import com.river.entity.Clazz;
 import com.river.entity.Student;
 import com.river.mapper.ClazzMapper;
 import com.river.mapper.StudentMapper;
@@ -13,7 +14,7 @@ import java.io.InputStream;
 import java.util.List;
 
 
-// 多表查询的第一种方法
+// 多表查询的第一种方法　业务代码
 
 public class TestA {
     public static void main(String[] args) throws IOException {
@@ -36,8 +37,13 @@ public class TestA {
 
         // b查询所有学生班级号的班级信息
         for (Student student : students) {
-            System.out.println(student.getSname() + " ==> "
-                    + clazzMapper.selectOne(student.getClazzno()).getCname());
+//            System.out.println(student.getSname() + " ==> "
+//                    + clazzMapper.selectOne(student.getClazzno()).getCname());
+            Clazz cla = clazzMapper.selectOne(student.getClazzno());
+            // 将查询的Clazz对象存入Student对象中
+            student.setCla(cla);
+            // 打印输出
+            System.out.println(student);
         }
 
 

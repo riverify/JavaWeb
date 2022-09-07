@@ -6,6 +6,8 @@ public class Student implements Serializable {
     private Integer sid;
     private String sname;
     private Integer clazzno;
+    // 表示一个班级的对象（一个学生对应一个班级）
+    private Clazz cla;
 
     public Student() {
     }
@@ -40,12 +42,21 @@ public class Student implements Serializable {
         this.clazzno = clazzno;
     }
 
+    public Clazz getCla() {
+        return cla;
+    }
+
+    public void setCla(Clazz cla) {
+        this.cla = cla;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
                 "sid=" + sid +
                 ", sname='" + sname + '\'' +
                 ", clazzno=" + clazzno +
+                ", cla=" + cla +
                 '}';
     }
 }
