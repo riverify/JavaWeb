@@ -6,8 +6,8 @@ public class Student implements Serializable {
     private Integer sid;
     private String sname;
     private Integer clazzno;
-    // 表示一个班级的对象（一个学生对应一个班级）
-    private Clazz cla;
+
+    private Clazz cla;    // 表示一个班级的对象（一个学生对应一个班级）
 
     public Student() {
     }

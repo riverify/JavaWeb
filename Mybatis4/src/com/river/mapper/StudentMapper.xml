@@ -9,4 +9,10 @@
         from student
     </select>
 
+    <select id="selectMore" resultType="student">
+        select *
+        from student
+        where clazzno = #{param1}
+    </select>
+
 </mapper>

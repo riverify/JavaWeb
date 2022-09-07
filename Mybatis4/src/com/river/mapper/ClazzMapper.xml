@@ -11,4 +11,9 @@
         where clazzno = #{param1}
     </select>
 
+    <select id="selectAll" resultType="clazz">
+        select *
+        from clazz
+    </select>
+
 </mapper>
