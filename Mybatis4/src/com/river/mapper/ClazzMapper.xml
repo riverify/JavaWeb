@@ -11,9 +11,42 @@
         where clazzno = #{param1}
     </select>
 
-    <select id="selectAll" resultType="clazz">
+    <!--    <select id="selectAll" resultType="clazz">-->
+    <!--        select *-->
+    <!--        from clazz-->
+    <!--    </select>-->
+
+    <select id="selectAll" resultMap="rm1">
         select *
         from clazz
     </select>
+
+    <resultMap id="rm1" type="clazz">
+        <id column="clazzno" property="clazzno"></id>
+        <result column="cname" property="cname"></result>
+
+        <!-- collection ===== ofType:集合的泛型 -->
+        <collection select="com.river.mapper.StudentMapper.selectMore" column="clazzno" ofType="student"
+                    property="std"></collection>
+    </resultMap>
+
+
+    <!-- 多表查询 -->
+    <select id="selectAll2" resultMap="rm2">
+        select *
+        from clazz c
+                 join student s
+                      on c.clazzno = s.clazzno
+    </select>
+
+    <resultMap id="rm2" type="clazz">
+        <id column="clazzno" property="clazzno"></id>
+        <result column="cname" property="cname"></result>
+        <collection property="std" ofType="student">
+            <id column="sid" property="sid"></id>
+            <result column="sname" property="sname"></result>
+            <result column="clazzno" property="clazzno"></result>
+        </collection>
+    </resultMap>
 
 </mapper>

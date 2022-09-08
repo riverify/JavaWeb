@@ -21,7 +21,9 @@
     </select>
 
     <resultMap id="rm1" type="student">
-        <!-- column: 数据库列名   property: 实体类的属性名 -->
+        <!-- column: 数据库列名   property: 实体类的属性名
+            若数据库列名和实体类属性名一致，可省略
+        -->
         <id column="sid" property="sid"></id>
         <result column="sname" property="sname"></result>
         <result column="clazzno" property="clazzno"></result>
@@ -37,6 +39,28 @@
 
         </association>
 
+    </resultMap>
+
+
+    <!-- 多表查询 -->
+    <select id="selectAll2" resultMap="rm2">
+        select *
+        from student s
+                 join clazz c on s.clazzno = c.clazzno
+    </select>
+
+    <resultMap id="rm2" type="student">
+        <!-- 注意：书写的每个值就是接收数据库查询的数据
+                  所以想要接收的数据字段不可以省略　
+        -->
+        <id column="sid" property="sid"></id>
+        <result column="sname" property="sname"></result>
+        <result column="clazzno" property="clazzno"></result>
+        <!-- association 用于对象值的接收 -->
+        <association property="cla" javaType="clazz">
+            <id column="clazzno" property="clazzno"></id>
+            <result column="cname" property="cname"></result>
+        </association>
     </resultMap>
 
 </mapper>

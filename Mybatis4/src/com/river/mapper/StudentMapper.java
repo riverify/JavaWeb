@@ -10,4 +10,7 @@ public interface StudentMapper {
 
     // 查询指定班级号的学生
     List<Student> selectMore(Integer clazzno);
+
+    // 多表查询操作
+    List<Student> selectAll2();
 }

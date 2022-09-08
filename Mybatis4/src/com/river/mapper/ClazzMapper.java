@@ -12,4 +12,8 @@ public interface ClazzMapper {
     List<Clazz> selectAll();
 
 
+    // 多表查询
+    List<Clazz> selectAll2();
+
+
 }
