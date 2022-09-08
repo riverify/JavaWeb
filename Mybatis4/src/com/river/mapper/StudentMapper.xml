@@ -4,7 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.river.mapper.StudentMapper">
-    <select id="selectAll" resultType="student">
+    <!--    <select id="selectAll" resultType="student">-->
+    <!--        select *-->
+    <!--        from student-->
+    <!--    </select>-->
+
+    <select id="selectAll" resultMap="rm1"><!-- 改用resultMap -->
         select *
         from student
     </select>
@@ -14,5 +19,24 @@
         from student
         where clazzno = #{param1}
     </select>
+
+    <resultMap id="rm1" type="student">
+        <!-- column: 数据库列名   property: 实体类的属性名 -->
+        <id column="sid" property="sid"></id>
+        <result column="sname" property="sname"></result>
+        <result column="clazzno" property="clazzno"></result>
+
+        <!--
+        select * from clazz where clazzno = ?
+        select: 执行的方法
+        column: 需要传入的某一列作为参数
+        javaType: select返回的类型
+        property: 把返回值传给type对象的某个属性
+        -->
+        <association select="com.river.mapper.ClazzMapper.selectOne" column="clazzno" javaType="clazz" property="cla">
+
+        </association>
+
+    </resultMap>
 
 </mapper>
