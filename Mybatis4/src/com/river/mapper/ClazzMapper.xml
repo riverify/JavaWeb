@@ -5,6 +5,9 @@
 
 <mapper namespace="com.river.mapper.ClazzMapper">
 
+    <!-- 使用mybatis二级缓存 -->
+    <!--    <cache readOnly="true"></cache>-->
+
     <select id="selectOne" resultType="clazz">
         select *
         from clazz
