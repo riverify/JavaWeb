@@ -1,6 +1,7 @@
 package com.river.mapper;
 
 import com.river.entity.Student;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -13,4 +14,12 @@ public interface StudentMapper {
 
     // 多表查询操作
     List<Student> selectAll2();
+
+    /**
+     * mybatis 注解
+     *
+     * @return
+     */
+    @Select("select * from student")
+    List<Student> selectAll3();
 }
