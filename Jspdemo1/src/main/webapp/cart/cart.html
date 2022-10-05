@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>我的购物车-京东商城</title>
+	<link rel="stylesheet" type="text/css" href="css/cart.css"/>
+	<script type="text/javascript">
+		/**
+		 * 改变所购商品的数量
+		 * @param {Object} flag：商品数量的增加还是减少标识符  add为增  min为减
+		 * @param {Object} elemObj：触发当前事件的元素
+		 */
+		function changeNum(flag, elemObj) {
+			//获取该商品是否被选中
+			var inpObj = getChecked(elemObj);
+			//获取原来的数量值
+			var oldNum = getNum(flag, elemObj);
+
+			//获取存放商品单价的元素
+			var SinglePriceObj = getSinglePrice(elemObj);
+			//获取存放该商品总价的元素
+			var CountMoneyObj = getCountMoney(elemObj);
+
+			if (inpObj.checked) {//结算处也跟着变动
+				//获取用于存放商品总件数的元素
+				var totalCountObj = document.getElementById("totalCount");
+				//获取用于存放商品总价的元素
+				var totalMoneyObj = document.getElementById("totalMoney");
+
+				//根据用户的 +  -来改变oldNum的值和该商品总价值
+				if (flag == "add") {
+					//获取用于存放商品数量的文本框元素
+					var txtNumObj = elemObj.previousSibling;//获取上一个节点,注意，此处获取到的不一定是元素节点
+					while (txtNumObj.nodeType != 1) {//保证获取到元素节点
+						txtNumObj = txtNumObj.previousSibling;
+					}
+					//数量+1
+					txtNumObj.value = (parseInt(oldNum) + 1);
+
+					//改变该商品总价值==（单价*数量）
+					//获取单价
+					var strObj = new String(SinglePriceObj.innerHTML);
+					var strPrice = strObj.substr(1, strObj.length - 1);
+
+					//改变存放该商品总价的元素的内容
+					var singleTotalMoney = (parseFloat(strPrice) * parseInt(txtNumObj.value));
+					CountMoneyObj.innerHTML = "￥" + singleTotalMoney;
+
+					//设置并显示商品总件数和总价钱
+					//所有商品件数+1
+					totalCountObj.innerHTML = parseInt(totalCountObj.innerHTML) + 1;
+					//所有商品总价+该商品单价
+					var strTotalMoneyObj = new String(totalMoneyObj.innerHTML);
+					totalMoneyObj.innerHTML = "￥" + (parseFloat(strTotalMoneyObj.substr(1, strTotalMoneyObj.length - 1)) + parseFloat(strPrice));
+
+				} else if (flag == "min") {
+					if (oldNum == 1) {//如果原来的数量是1，不能进行减操作，给出提示信息即可
+						alert("必须保证宝贝数量大于1");
+						return false;
+					} else {
+						//获取用于存放商品数量的文本框元素
+						var txtNumObj = elemObj.nextSibling;//获取下一个节点,注意，此处获取到的不一定是元素节点
+						while (txtNumObj.nodeType != 1) {//保证获取到元素节点
+							txtNumObj = txtNumObj.nextSibling;
+						}
+						//数量-1
+						txtNumObj.value = (parseInt(oldNum) - 1);
+
+						//改变该商品总价值==（单价*数量）
+						//获取单价
+						var strObj = new String(SinglePriceObj.innerHTML);
+						var strPrice = strObj.substr(1, strObj.length - 1);
+
+						//改变存放该商品总价的元素的内容
+						var singleTotalMoney = (parseFloat(strPrice) * parseInt(txtNumObj.value));
+						CountMoneyObj.innerHTML = "￥" + singleTotalMoney;
+
+						//设置并显示商品总件数和总价钱
+						//所有商品件数-1
+						totalCountObj.innerHTML = parseInt(totalCountObj.innerHTML) - 1;
+						//所有商品总价-该商品单价
+						var strTotalMoneyObj = new String(totalMoneyObj.innerHTML);
+						totalMoneyObj.innerHTML = "￥" + (parseFloat(strTotalMoneyObj.substr(1, strTotalMoneyObj.length - 1)) - parseFloat(strPrice));
+
+					}
+				}
+			} else {//结算处不变
+				//根据用户的 +  -来改变oldNum的值和该商品总价值
+				if (flag == "add") {
+					//获取用于存放商品数量的文本框元素
+					var txtNumObj = elemObj.previousSibling;//获取上一个节点,注意，此处获取到的不一定是元素节点
+					while (txtNumObj.nodeType != 1) {//保证获取到元素节点
+						txtNumObj = txtNumObj.previousSibling;
+					}
+					//数量+1
+					txtNumObj.value = (parseInt(oldNum) + 1);
+
+					//改变该商品总价值==（单价*数量）
+					//获取单价
+					var strObj = new String(SinglePriceObj.innerHTML);
+					var strPrice = strObj.substr(1, strObj.length - 1);
+
+					//改变存放该商品总价的元素的内容
+					CountMoneyObj.innerHTML = "￥" + (parseFloat(strPrice) * parseInt(txtNumObj.value));
+				} else if (flag == "min") {
+					if (oldNum == 1) {//如果原来的数量是1，不能进行减操作，给出提示信息即可
+						alert("必须保证宝贝数量大于1");
+						return false;
+					} else {
+						//获取用于存放商品数量的文本框元素
+						var txtNumObj = elemObj.nextSibling;//获取下一个节点,注意，此处获取到的不一定是元素节点
+						while (txtNumObj.nodeType != 1) {//保证获取到元素节点
+							txtNumObj = txtNumObj.nextSibling;
+						}
+						//数量-1
+						txtNumObj.value = (parseInt(oldNum) - 1);
+
+						//改变该商品总价值==（单价*数量）
+						//获取单价
+						var strObj = new String(SinglePriceObj.innerHTML);
+						var strPrice = strObj.substr(1, strObj.length - 1);
+
+						//改变存放该商品总价的元素的内容
+						CountMoneyObj.innerHTML = "￥" + (parseFloat(strPrice) * parseInt(txtNumObj.value));
+					}
+				}
+			}
+		}
+
+
+		/**
+		 * 判断商品是否被选中
+		 * @param {Object} elemObj：触发事件的元素对象
+		 */
+		function getChecked(elemObj) {
+			var liEleObj = elemObj.parentNode;
+
+			var count = 0;//计数器
+			//获取liEleObj的上一个一个元素节点li
+			var liCheckedObj = liEleObj.previousElementSibling;
+			while (liCheckedObj.nodeType == 1) {
+				count++;
+				liCheckedObj = liCheckedObj.previousElementSibling;
+				if (count == 4) {//此时的liCheckedObj是包含复选框 input type='checkbox'的li
+					//alert(liCheckedObj.innerHTML);
+					break;//退出循环
+				}
+			}
+
+			var eleObj = liCheckedObj.childNodes;
+			var inpObj = eleObj[0];
+			while (inpObj.nodeType != 1) {
+				inpObj = inpObj.nextSibling;
+			}
+			return inpObj;//返回checkbox对象
+		}
+
+		/**
+		 * 获取该商品的数量
+		 * @param {Object} flag：商品数量的增加还是减少标识符  add为增  min为减
+		 * @param {Object} elemObj：触发当前事件的元素
+		 */
+		function getNum(flag, elemObj) {
+			var num = 0;//商品的数量,默认给个数值型0
+			if (flag == "add") {
+				//获取用于存放商品数量的文本框元素
+				var txtNumObj = elemObj.previousSibling;//获取上一个节点,注意，此处获取到的不一定是元素节点
+				while (txtNumObj.nodeType != 1) {//保证获取到元素节点
+					txtNumObj = txtNumObj.previousSibling;
+				}
+				//取文本框元素的value值
+				num = txtNumObj.value;
+			} else if (flag == "min") {
+				//获取用于存放商品数量的文本框元素
+				var txtNumObj = elemObj.nextSibling;//获取下一个节点,注意，此处获取到的不一定是元素节点
+				while (txtNumObj.nodeType != 1) {//保证获取到元素节点
+					txtNumObj = txtNumObj.nextSibling;
+				}
+				//取文本框元素的value值
+				num = txtNumObj.value;
+			}
+			return num;//返回商品的数量值
+		}
+
+		/**
+		 *获取存放商品单价的元素
+		 * @param {Object} elemObj:触发当前事件的元素
+		 */
+		function getSinglePrice(elemObj) {
+			//获取触发当前事件的元素的父节点
+			var liObj = elemObj.parentNode;
+
+			//获取liObj的上一个元素节点li
+			var liSingleObj = liObj.previousSibling;//此时不一定是元素节点，可能是文本节点，所以需要引入while
+			while (liSingleObj.nodeType != 1) {
+				liSingleObj = liSingleObj.previousSibling;
+			}
+			return liSingleObj;//存放商品单价的元素返回
+		}
+
+		/**
+		 * 获取存放该商品总价的元素
+		 * @param {Object} elemObj:触发当前事件的元素
+		 */
+		function getCountMoney(elemObj) {
+			//获取触发当前事件的元素的父节点
+			var liObj = elemObj.parentNode;
+
+			//获取liObj的下一个元素节点li
+			var liCountObj = liObj.nextSibling;//此时不一定是元素节点，可能是文本节点，所以需要引入while
+			while (liCountObj.nodeType != 1) {
+				liCountObj = liCountObj.nextSibling;
+			}
+			return liCountObj;//将存放该商品总价的元素返回
+		}
+
+		/**
+		 * 删除商品
+		 * @param {Object} elemObj:触发当前事件的元素
+		 */
+		function deleteGoods(elemObj) {
+			//获取需要删除的商品div元素
+			var elemSonDiv = elemObj.parentNode.parentNode.parentNode.parentNode;
+
+			//获取商品div元素的父级元素div
+			var elemParentDiv = elemObj.parentNode.parentNode.parentNode.parentNode.parentNode;
+
+			//删除
+			elemParentDiv.removeChild(elemSonDiv);
+
+			return false;//防止a标签跳转
+		}
+
+
+		/**
+		 * 选中商品
+		 * @param {Object} type  ：选择类型，全选还是单选
+		 * @param {Object} elemObj：触发当前事件的元素
+		 */
+		function checkGoods(type, elemObj) {
+			//获取用于存放商品总件数的元素
+			var totalCountObj = document.getElementById("totalCount");
+			//获取用于存放商品总价的元素
+			var totalMoneyObj = document.getElementById("totalMoney");
+
+			var count = 0;//所有商品件数，默认为0
+			var GoodsSumMoney = 0;//所有商品的总价，默认为0
+			if ("all" == type) {//全选
+				var allGoods = document.getElementsByName("goods");
+				if (elemObj.checked) {
+					//全选按钮打钩就全选
+					for (var i = 0; i < allGoods.length; i++) {
+						allGoods[i].checked = true;
+					}
+					//求每件商品的总数量和
+					var numTxtObjs = document.getElementsByName("numTxt");
+					for (var i = 0; i < numTxtObjs.length; i++) {
+						count += parseInt(numTxtObjs[i].value);
+					}
+
+					//求每件商品的总价和
+					var singleGoodsSumObjs = document.getElementsByName("singleGoodsSum");
+					for (var i = 0; i < singleGoodsSumObjs.length; i++) {
+						var strObj = new String(singleGoodsSumObjs[i].innerHTML);
+						var strPrice = strObj.substr(1, strObj.length - 1);
+						GoodsSumMoney += parseFloat(strPrice);
+					}
+					//设置并显示商品总件数和总价钱
+					totalCountObj.innerHTML = count;
+					totalMoneyObj.innerHTML = "￥" + parseFloat(GoodsSumMoney);
+				} else {
+					//全选按钮去掉钩就全都不选
+					for (var i = 0; i < allGoods.length; i++) {
+						allGoods[i].checked = false;
+					}
+					//设置并显示商品总件数和总价钱
+					totalCountObj.innerHTML = count;
+					totalMoneyObj.innerHTML = "￥" + parseFloat(GoodsSumMoney);
+				}
+			} else if ("one" == type) {//单选
+				//获取该件商品的总数量、该件商品的总价
+				var lielemObj = elemObj.parentNode;
+				var count = 0;//计数器
+				var totalCount = 0;//总数量
+				var sum = 0;//总价
+				while (lielemObj.nodeType == 1) {
+					lielemObj = lielemObj.nextElementSibling;
+					count++;
+					if (count == 5) {//获取该件商品的总数量
+						var inpEleObjs = lielemObj.childNodes;//通过lielemObj的子节点找到存放该件该件商品的总数量input元素
+						var inpEleObj = "";//空对象
+						var j = 0;//计数器
+						for (var i = 0; i < inpEleObjs.length; i++) {
+							inpEleObj = inpEleObjs[i];
+							if (inpEleObj.nodeType == 1) {
+								j++;
+							}
+							if (j == 2) {//通过lielemObj的子节点找到存放该件该件商品的总数量input type="text" name="numTxt"元素
+								break;//跳出for循环
+							}
+						}
+						//得到总数量
+						totalCount = parseInt(inpEleObj.value);
+					}
+					if (count == 6) {//获取该件商品的总价
+						var strObj = new String(lielemObj.innerHTML);
+						//得到总价
+						sum = parseFloat(strObj.substr(1, strObj.length - 1));
+						break;//跳出while循环
+					}
+				}
+				if (elemObj.checked) {//选中
+					//设置并显示商品总件数和总价钱
+					//所有商品件数+该商品总件数
+					totalCountObj.innerHTML = parseInt(totalCountObj.innerHTML) + totalCount;
+					//所有商品总价+该商品总价
+					var strTotalMoneyObj = new String(totalMoneyObj.innerHTML);
+					totalMoneyObj.innerHTML = "￥" + (parseFloat(strTotalMoneyObj.substr(1, strTotalMoneyObj.length - 1)) + sum);
+				} else {//未选中
+					//所有商品件数-该商品总件数
+					totalCountObj.innerHTML = parseInt(totalCountObj.innerHTML) - totalCount;
+					//所有商品总价-该商品总价
+					var strTotalMoneyObj = new String(totalMoneyObj.innerHTML);
+					totalMoneyObj.innerHTML = "￥" + (parseFloat(strTotalMoneyObj.substr(1, strTotalMoneyObj.length - 1)) - sum);
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+<div id="container">
+	<div id="submenu">
+		<ul>
+			<li class="w190"><a href="#">送至：北京</a></li>
+			<li class="bg0"><a href="#">洋洋宝贝</a></li>
+			<li><a href="#">我的订单 </a></li>
+			<li><a href="#">我的京东</a></li>
+			<li><a href="#">京东会员</a></li>
+			<li><a href="#">企业采购</a></li>
+			<li><a href="#">手机京东</a></li>
+			<li><a href="#">关注京东</a></li>
+			<li><a href="#">客户服务</a></li>
+			<li class="t_r"><a href="#">网站导航</a></li>
+		</ul>
+	</div><!--submenu end-->
+	<div id="content">
+		<div id="header">
+			<div id="logo"></div><!--logo end-->
+			<div id="search">
+				<form>
+					<input type="text"/>
+				</form>
+			</div><!--search end-->
+		</div><!--header end-->
+		<div id="allgoods">
+			<h2>全部商品2</h2>
+			<h3>配送至：</h3>
+		</div><!--allgoods end-->
+		<div id="title">
+
+			<ul>
+				<li class="b2">
+					<form>
+						<input type="checkbox" onclick="checkGoods('all',this);"/>&nbsp;全选
+					</form>
+				</li>
+				<li class="w400">商品</li>
+				<li>单价</li>
+				<li>数量</li>
+				<li>小计</li>
+				<li class="br2">操作</li>
+			</ul>
+		</div><!--title end-->
+		<div class="info">
+			<form>
+				<ul>
+					<li class="p10"><input type="checkbox" name="goods" onclick="checkGoods('one',this);"/></li>
+					<li><img src="img/img3.jpg" width="80"/></li>
+					<li class="w300"><a href="#">【京东超市】好孩子婴儿橄榄柔护洗衣液1L送500ml*2袋装</a></li>
+					<li class="w160">颜色：橄榄柔护洗衣液1L送50</li>
+					<li class="w100">￥36.89</li>
+					<li class="w100"><input type="button" value="-" onclick="changeNum('min',this);"/><input type="text"
+																											 name="numTxt"
+																											 style="text-align: center;"
+																											 value="1"/><input
+							type="button" value="+" onclick="changeNum('add',this);"/></li>
+					<li class="w50" name="singleGoodsSum">￥36.89</li>
+					<li class="w80"><a href="#" onclick="return deleteGoods(this);">删除</a><br/>
+						<a href="#">移到我的关注</a>
+					</li>
+				</ul>
+			</form>
+		</div><!--info end-->
+		<div class="info">
+			<form>
+				<ul>
+					<li class="p10"><input type="checkbox" name="goods" onclick="checkGoods('one',this);"/></li>
+					<li><img src="img/img2.jpg" width="80"/></li>
+					<li class="w300"><a href="#">【京东超市】宏碁电脑，第6代智能英特尔® 酷睿TMi7 处理器</a></li>
+					<li class="w160">颜色：灰白</li>
+					<li class="w100">￥3999</li>
+					<li class="w100"><input type="button" value="-" onclick="changeNum('min',this);"/><input type="text"
+																											 name="numTxt"
+																											 style="text-align: center;"
+																											 value="1"/><input
+							type="button" value="+" onclick="changeNum('add',this);"/></li>
+					<li class="w50" name="singleGoodsSum">￥3999</li>
+					<li class="w80"><a href="#" onclick="return deleteGoods(this);">删除</a><br/>
+						<a href="#">移到我的关注</a>
+					</li>
+				</ul>
+
+			</form>
+		</div><!--info end-->
+		<div class="info">
+			<form>
+				<ul>
+					<li class="p10"><input type="checkbox" name="goods" onclick="checkGoods('one',this);"/></li>
+					<li><img src="img/img1.jpg" width="80"/></li>
+					<li class="w300"><a href="#">【京东超市】desha春秋季儿童休闲服</a></li>
+					<li class="w160">颜色：灰色+粉红</li>
+					<li class="w100">￥158.99</li>
+					<li class="w100"><input type="button" value="-" onclick="changeNum('min',this);"/><input type="text"
+																											 name="numTxt"
+																											 style="text-align: center;"
+																											 value="1"/><input
+							type="button" value="+" onclick="changeNum('add',this);"/></li>
+					<li class="w50" name="singleGoodsSum">￥158.99</li>
+					<li class="w80"><a href="#" onclick="return deleteGoods(this);">删除</a><br/>
+						<a href="#">移到我的关注</a>
+					</li>
+				</ul>
+			</form>
+		</div><!--info end-->
+		<div id="cash">
+			<div id="left">
+				<form>
+					<input type="checkbox" onclick="checkGoods('all',this);">&nbsp;全选&nbsp;&nbsp;删除选中的商品&nbsp;&nbsp;
+					移到我的关注&nbsp;&nbsp;清除下柜商品
+				</form>
+			</div><!--left end-->
+			<div id="right">
+				<a href="#">已选择<span id="totalCount">0</span>件商品</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;总价<span id="totalMoney">￥0.00</span>
+				<a href="#"><input type="button" value="" class="btn"/></a>
+			</div><!--right end-->
+
+		</div><!--cash end-->
+	</div><!--content end-->
+</div><!--container end-->
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
