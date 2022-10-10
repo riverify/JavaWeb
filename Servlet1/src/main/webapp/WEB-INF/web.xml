@@ -14,4 +14,24 @@
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>lifeServlet</servlet-name>
+        <servlet-class>com.river.servlet1.LifeServlet</servlet-class>
+        <!--        <load-on-startup>0</load-on-startup>-->
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>lifeServlet</servlet-name>
+        <url-pattern>/lifeServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>doLogin</servlet-name>
+        <servlet-class>com.river.servlet1.DoLogin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>doLogin</servlet-name>
+        <url-pattern>/DoLogin</url-pattern>
+    </servlet-mapping>
+
 </web-app>
