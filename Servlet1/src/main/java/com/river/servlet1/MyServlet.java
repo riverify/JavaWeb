@@ -29,7 +29,7 @@ public class MyServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=" + enc2); // 防止中文乱码
+        resp.setContentType("text/html;charset=" + enc2); // 防止中文乱码;
 
         PrintWriter out = resp.getWriter();
 

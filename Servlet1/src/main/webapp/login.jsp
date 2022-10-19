@@ -13,7 +13,7 @@
 <body>
 
 <h3>登陆页面</h3>
-<form action="DoLogin">
+<form action="DoLogin" method="get">
 
     <p>
         用户名:<input type="text" name="uname">
