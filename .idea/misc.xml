@@ -5,12 +5,14 @@
     <file type="web" url="file://$PROJECT_DIR$/demoJsp" />
     <file type="web" url="file://$PROJECT_DIR$/Jspdemo1" />
     <file type="web" url="file://$PROJECT_DIR$/Servlet1" />
+    <file type="web" url="file://$PROJECT_DIR$/Servlet2" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/Jspdemo1/pom.xml" />
         <option value="$PROJECT_DIR$/Servlet1/pom.xml" />
+        <option value="$PROJECT_DIR$/Servlet2/pom.xml" />
       </list>
     </option>
   </component>
