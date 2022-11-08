@@ -10,6 +10,7 @@
         <module name="Servlet1" />
         <module name="Servlet2" />
         <module name="Servlet3" />
+        <module name="Servlet4" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
