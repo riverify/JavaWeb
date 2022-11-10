@@ -29,7 +29,7 @@ public class DoLoginServlet extends HttpServlet {
         if (flag) {
             req.getRequestDispatcher("success.jsp").forward(req, resp);
         } else {
-            req.setAttribute("msg", "账号或密码错误!");
+            req.setAttribute("msg", "账号或密码错误!!");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
 
