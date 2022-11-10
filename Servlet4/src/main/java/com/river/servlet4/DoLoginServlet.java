@@ -2,10 +2,7 @@ package com.river.servlet4;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/DoLoginServlet")
@@ -22,6 +19,16 @@ public class DoLoginServlet extends HttpServlet {
 
         // c.作出响应
         if (flag) {
+            // Session实现欢迎登陆
+            // a获得Session对象
+            HttpSession session = req.getSession();
+            // b把指定的数据保存到Session
+            session.setAttribute("uname", uname);
+//            session.setMaxInactiveInterval(6000); // 设置session失效时机（单位：秒）
+//          或在web.xml中配置　<session-config>
+//                              <session-timeout>60</session-timeout>
+//                          </session-config>
+
             // cookie记住我
             // 申请
             Cookie cookie1 = new Cookie("u", uname);
