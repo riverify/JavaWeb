@@ -24,5 +24,7 @@ JsessionID:<%=session.getId()%>
 Session的活动时间<%=session.getMaxInactiveInterval()%>
 <hr/>
 <a href="LoginOut">退出</a>
+<hr/>
+当前访问人数:<%=application.getAttribute("countAttribution")%>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.river.servlet4;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -19,7 +20,19 @@ public class DoLoginServlet extends HttpServlet {
 
         // c.作出响应
         if (flag) {
-            // Session实现欢迎登陆
+            // ======== ServletContext对象统计网站访问人数 ========
+            // 获得全局对象
+            ServletContext context = req.getServletContext();
+            // 获得之前登陆人数
+            Integer count = (Integer) context.getAttribute("countAttribution");
+            if (count == null) {
+                count = 1; // 之前无人登陆过
+            } else {
+                count++;
+            }
+            context.setAttribute("countAttribution", count);
+
+            // ============== Session实现欢迎登陆 ==============
             // a获得Session对象
             HttpSession session = req.getSession();
             // b把指定的数据保存到Session
