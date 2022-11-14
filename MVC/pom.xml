@@ -46,5 +46,18 @@
                 <version>3.3.2</version>
             </plugin>
         </plugins>
+
+        <!-- https://blog.csdn.net/u010648555/article/details/70880425 -->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+
     </build>
+
 </project>

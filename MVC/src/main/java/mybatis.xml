@@ -51,7 +51,7 @@
     <mappers>
 
         <!-- 扫描package　name下的所有接口，再扫描接口同名的ＸＭＬ文件 -->
-        <package name="com.river.mapper"/>
+        <package name="com/river/mapper"/>
 
     </mappers>
 

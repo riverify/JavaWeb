@@ -6,6 +6,10 @@ import com.river.util.DBUtil;
 
 public class TestE {
 
+    public static void main(String[] args) {
+        new TestE().selectAll();
+    }
+
     public void selectAll() {
         ClazzMapper mapper = DBUtil.getSqlSession().getMapper(ClazzMapper.class);
         Clazz clazz = mapper.selectOne(1);
