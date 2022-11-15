@@ -19,10 +19,10 @@
 <body>
 
 <h3>登陆页面</h3>
-<form action="DoLoginServlet" method="post">
+<form action="UserLogin" method="post">
 
     <p>
-        用户名:<input type="text" name="uname" id="uname"">
+        用户名:<input type="text" name="uname" id="uname"> ${requestScope.msg} <!-- EL表达式 -->
         <span id="uname_span"></span>
     </p>
     <p>
