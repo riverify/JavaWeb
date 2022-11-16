@@ -1,8 +1,8 @@
 package com.river.servlet;
 
 import com.river.entity.User;
-import com.river.mapper.UserMapper;
-import com.river.util.DBUtil;
+import com.river.service.UserService;
+import com.river.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,8 +21,10 @@ public class UserLogin extends HttpServlet {
         String pwd = req.getParameter("pwd");
 
         // 数据处理--连接数据库
-        UserMapper mapper = DBUtil.getSqlSession().getMapper(UserMapper.class);
-        User user = mapper.selectOne(uname, pwd);
+//        UserMapper mapper = DBUtil.getSqlSession().getMapper(UserMapper.class);
+//        User user = mapper.selectOne(uname, pwd);
+        UserService userService = new UserServiceImpl();
+        User user = userService.login(uname, pwd);
 
         // 根据返回的结果作出相应
         if (user == null) {
