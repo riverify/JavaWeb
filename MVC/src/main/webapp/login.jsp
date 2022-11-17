@@ -33,5 +33,6 @@
         <input type="submit" value="登陆">
     </p>
 </form>
+<a href="register.jsp">没有账号？</a>
 </body>
 </html>
