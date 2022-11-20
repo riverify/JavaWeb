@@ -57,7 +57,8 @@
                     </td>
 
                     <td>
-                        <div class="button-group"><a class="button border-main" href="add.html"><span
+                        <div class="button-group"><a class="button border-main"
+                                                     href="EmployeeFindOneServlet?eid=${emp.eid}"><span
                                 class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
                                                                     onclick="return del(1,1,1)"><span
                                 class="icon-trash-o"></span> 删除</a></div>
