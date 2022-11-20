@@ -13,4 +13,7 @@ public interface EmployeeService {
 
     // 查询所有用户
     List<Employee> findAll();
+
+    // 用户查询单个
+    Employee findOne(int eid);
 }

@@ -14,4 +14,7 @@ public interface EmployeeMapper {
 
     // 查询所有员工
     List<Employee> selectAll();
+
+    // 查询单个员工
+    Employee selectOne2(int eid);
 }

@@ -22,4 +22,10 @@
         from employee;
     </select>
 
+    <select id="selectOne2" resultType="employee">
+        select *
+        from employee
+        where eid = #{param1};
+    </select>
+
 </mapper>

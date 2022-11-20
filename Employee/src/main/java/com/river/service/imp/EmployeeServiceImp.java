@@ -14,6 +14,8 @@ public class EmployeeServiceImp implements EmployeeService {
         EmployeeMapper mapper = DBUtil.getSqlSession().getMapper(EmployeeMapper.class);
         Employee employee = mapper.selectOne(ename, pwd);
 
+        DBUtil.closeAll();
+
         return employee;
     }
 
@@ -21,6 +23,8 @@ public class EmployeeServiceImp implements EmployeeService {
     public int save(Employee employee) {
         EmployeeMapper mapper = DBUtil.getSqlSession().getMapper(EmployeeMapper.class);
         int insert = mapper.insert(employee);
+
+        DBUtil.closeAll();
 
         return insert;
     }
@@ -30,6 +34,18 @@ public class EmployeeServiceImp implements EmployeeService {
         EmployeeMapper mapper = DBUtil.getSqlSession().getMapper(EmployeeMapper.class);
         List<Employee> list = mapper.selectAll();
 
+        DBUtil.closeAll();
+
         return list;
+    }
+
+    @Override
+    public Employee findOne(int eid) {
+        EmployeeMapper mapper = DBUtil.getSqlSession().getMapper(EmployeeMapper.class);
+        Employee employee = mapper.selectOne2(eid);
+
+        DBUtil.closeAll();
+
+        return employee;
     }
 }
