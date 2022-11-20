@@ -48,4 +48,24 @@ public class EmployeeServiceImp implements EmployeeService {
 
         return employee;
     }
+
+    @Override
+    public int change(Employee employee) {
+        EmployeeMapper mapper = DBUtil.getSqlSession().getMapper(EmployeeMapper.class);
+        int update = mapper.update(employee);
+
+        DBUtil.closeAll();
+
+        return update;
+    }
+
+    @Override
+    public int remove(int eid) {
+        EmployeeMapper mapper = DBUtil.getSqlSession().getMapper(EmployeeMapper.class);
+        int delete = mapper.delete(eid);
+
+        DBUtil.closeAll();
+
+        return delete;
+    }
 }

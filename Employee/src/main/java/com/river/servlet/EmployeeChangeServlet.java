@@ -13,14 +13,14 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.Arrays;
 
-
-@WebServlet("/EmployeeSaveServlet")
-public class EmployeeSaveServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/EmployeeChangeServlet")
+public class EmployeeChangeServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
 
         // 接收数据
+        int eid = Integer.parseInt(req.getParameter("eid"));
         String ename = req.getParameter("ename");
         String pwd = req.getParameter("pwd");
         String sex = req.getParameter("sex");
@@ -31,21 +31,18 @@ public class EmployeeSaveServlet extends HttpServlet {
         String phone = req.getParameter("phone");
         String remark = req.getParameter("remark");
 
-        Employee emp = new Employee(null, ename, pwd, sex, hobby, birth, phone, remark);
+        Employee emp = new Employee(eid, ename, pwd, sex, hobby, birth, phone, remark);
 
         // 数据处理
         EmployeeService emps = new EmployeeServiceImp();
-        int save = emps.save(emp);
-
-//        System.out.println(emps);
-//        System.out.println(save);
+        int change = emps.change(emp);
 
         // 作出响应
-        if (save > 0) {
+        if (change > 0) {
             resp.sendRedirect(req.getContextPath() + "/EmployeeFindAllServlet");
         } else {
             req.setAttribute("msg", "添加失败");
-            req.getRequestDispatcher("/saveUser.html").forward(req, resp);
+            req.getRequestDispatcher("/updateUser.html").forward(req, resp);
         }
 
     }

@@ -28,4 +28,20 @@
         where eid = #{param1};
     </select>
 
+    <update id="update" parameterType="employee">
+        update employee
+        set ename = #{ename},
+            pwd = #{pwd},
+            sex = #{sex},
+            hobby = #{hobby},
+            birth = #{birth},
+            phone = #{phone},
+            remark = #{remark}
+        where eid = #{eid}
+    </update>
+
+    <delete id="delete">
+        delete from employee where eid = #{param1};
+    </delete>
+
 </mapper>

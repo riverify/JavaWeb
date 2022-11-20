@@ -17,4 +17,10 @@ public interface EmployeeMapper {
 
     // 查询单个员工
     Employee selectOne2(int eid);
+
+    // 修改操作
+    int update(Employee employee);
+
+    // 删除操作
+    int delete(int eid);
 }

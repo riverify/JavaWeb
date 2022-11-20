@@ -16,4 +16,10 @@ public interface EmployeeService {
 
     // 用户查询单个
     Employee findOne(int eid);
+
+    // 修改一个用户
+    int change(Employee employee);
+
+    // 删除一个用户
+    int remove(int eid);
 }
