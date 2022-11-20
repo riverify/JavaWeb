@@ -60,7 +60,7 @@
                         <div class="button-group"><a class="button border-main"
                                                      href="EmployeeFindOneServlet?eid=${emp.eid}"><span
                                 class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
-                                                                    onclick="return del(1,1,1)"><span
+                                                                    onclick="return del(${emp.eid})"><span
                                 class="icon-trash-o"></span> 删除</a></div>
                     </td>
                 </tr>
@@ -83,9 +83,9 @@
     }
 
     //单个删除
-    function del(id, mid, iscid) {
+    function del(id) {
         if (confirm("您确定要删除吗?")) {
-
+            window.location.href = "EmployeeRemoveServlet?eid=" + id;
         }
     }
 
