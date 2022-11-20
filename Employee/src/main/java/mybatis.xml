@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--读取属性文件-->
+    <properties resource="jdbc.properties"></properties>
+
+    <!-- 指定mybatis中的日志类型 -->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+    <!--给实体类配置别名-->
+    <typeAliases>
+
+        <!-- 给指定实体类起别名 -->
+        <!--        <typeAlias type="com.river.entity.Employee" alias="E"></typeAlias>-->
+        <!-- 给包起别名: 包下所有类的别名就是当前类名 -->
+        <package name="com.river.entity"/>
+
+    </typeAliases>
+
+    <!-- 默认环境 -->
+    <environments default="mysql">
+
+        <!--　MySql数据库连接　-->
+        <environment id="mysql">
+
+            <!-- MyBatis数据库事务管理 -->
+            <transactionManager type="JDBC"></transactionManager>
+
+            <!-- 底层使用连接池链接数据库 -->
+            <dataSource type="POOLED">
+
+                <!-- 属性 -->
+                <property name="driver" value="${m_driver}"/>
+                <property name="url" value="${m_url}"/>
+                <property name="username" value="${m_username}"/>
+                <property name="password" value="${m_password}"/>
+
+            </dataSource>
+
+        </environment>
+
+    </environments>
+
+    <!-- 进行mapper文件的扫描 -->
+    <mappers>
+
+        <!-- 扫描package　name下的所有接口，再扫描接口同名的ＸＭＬ文件 -->
+        <package name="com/river/mapper"/>
+
+    </mappers>
+
+</configuration>

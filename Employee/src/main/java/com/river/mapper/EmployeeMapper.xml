@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.river.mapper.EmployeeMapper">
+
+    <select id="selectOne" resultType="employee">
+        select *
+        from employee
+        where ename = #{param1}
+          and pwd = #{param2 };
+    </select>
+
+    <insert id="insert" parameterType="employee">
+        insert into employee
+        values (default, #{ename}, #{pwd}, #{sex}, #{hobby}, #{birth}, #{phone}, #{remark});
+    </insert>
+
+    <select id="selectAll" resultType="employee">
+        select *
+        from employee;
+    </select>
+
+</mapper>

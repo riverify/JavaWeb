@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Employee" />
         <module name="Jspdemo1" />
         <module name="MVC" />
         <module name="Servlet1" />

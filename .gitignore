@@ -11,7 +11,7 @@
 .mtj.tmp/
 
 # Package Files #
-# *.jar
+# *.jar # want it to git
 *.war
 *.nar
 *.ear
