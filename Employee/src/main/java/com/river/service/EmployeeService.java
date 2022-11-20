@@ -12,7 +12,7 @@ public interface EmployeeService {
     int save(Employee employee);
 
     // 查询所有用户
-    List<Employee> findAll();
+    List<Employee> findAll(String ename, String phone);
 
     // 用户查询单个
     Employee findOne(int eid);

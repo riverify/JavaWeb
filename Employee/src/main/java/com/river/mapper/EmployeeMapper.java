@@ -13,7 +13,7 @@ public interface EmployeeMapper {
     int insert(Employee employee);
 
     // 查询所有员工
-    List<Employee> selectAll();
+    List<Employee> selectAll(String ename, String phone);
 
     // 查询单个员工
     Employee selectOne2(int eid);

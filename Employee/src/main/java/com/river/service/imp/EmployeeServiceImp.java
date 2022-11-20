@@ -30,9 +30,9 @@ public class EmployeeServiceImp implements EmployeeService {
     }
 
     @Override
-    public List<Employee> findAll() {
+    public List<Employee> findAll(String ename, String phone) {
         EmployeeMapper mapper = DBUtil.getSqlSession().getMapper(EmployeeMapper.class);
-        List<Employee> list = mapper.selectAll();
+        List<Employee> list = mapper.selectAll(ename, phone);
 
         DBUtil.closeAll();
 

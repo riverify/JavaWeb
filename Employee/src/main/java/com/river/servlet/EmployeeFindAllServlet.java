@@ -16,10 +16,15 @@ import java.util.List;
 public class EmployeeFindAllServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String ename = req.getParameter("ename");
+        String phone = req.getParameter("phone");
+
         EmployeeService emps = new EmployeeServiceImp();
-        List<Employee> list = emps.findAll();
+        List<Employee> list = emps.findAll(ename, phone);
 
         req.setAttribute("list", list);
+        req.setAttribute("ename", ename);
+        req.setAttribute("phone", phone);
         req.getRequestDispatcher("/listUser.jsp").forward(req, resp);
     }
 }

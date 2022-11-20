@@ -14,67 +14,69 @@
     <script src="js/pintuer.js"></script>
 </head>
 <body>
-<form method="post" action="" id="listform">
-    <div class="panel admin-panel">
-        <div class="panel-head"><strong class="icon-reorder"> 用户列表</strong> <a href=""
-                                                                               style="float:right; display:none;">添加字段</a>
-        </div>
-        <div class="padding border-bottom">
+
+<div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 用户列表</strong> <a href=""
+                                                                           style="float:right; display:none;">添加字段</a>
+    </div>
+    <div class="padding border-bottom">
+        <form method="post" action="EmployeeFindAllServlet" id="listform">
             <ul class="search" style="padding-left:10px;">
                 <li>
                     用户名:
-                    <input type="text" placeholder="请输入搜索关键字" name="keywords" class="input"
+                    <input type="text" placeholder="请输入搜索关键字" value="${requestScope.ename}" name="ename" class="input"
                            style="width:250px; line-height:17px;display:inline-block"/>
                     手机号:
-                    <input type="text" placeholder="请输入搜索关键字" name="keywords" class="input"
+                    <input type="text" placeholder="请输入搜索关键字" value="${requestScope.phone}" name="phone" class="input"
                            style="width:250px; line-height:17px;display:inline-block"/>
-                    <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()"> 搜索</a>
+                    <input type="submit" class="button border-main icon-search" value="搜索">
                 </li>
             </ul>
-        </div>
+        </form>
+    </div>
 
-        <table class="table table-hover text-center">
+    <table class="table table-hover text-center">
+        <tr>
+            <th width="100" style="text-align:left; padding-left:20px;">ID</th>
+            <th width="10%">姓名</th>
+            <th>手机号</th>
+            <th>性别</th>
+            <th>出生年月</th>
+            <th width="310">操作</th>
+        </tr>
+
+        <c:forEach items="${requestScope.list}" var="emp">
             <tr>
-                <th width="100" style="text-align:left; padding-left:20px;">ID</th>
-                <th width="10%">姓名</th>
-                <th>手机号</th>
-                <th>性别</th>
-                <th>出生年月</th>
-                <th width="310">操作</th>
-            </tr>
+                <td style="text-align:left; padding-left:20px;">${emp.eid}</td>
+                <td>${emp.ename}</td>
+                <td>${emp.phone}</td>
+                <td>
+                    <c:if test="${emp.sex=='1'}">男</c:if>
+                    <c:if test="${emp.sex=='0'}">女</c:if>
+                </td>
+                <td>
+                    <fmt:formatDate value="${emp.birth}" pattern="yyyy-MM-dd"></fmt:formatDate>
+                </td>
 
-            <c:forEach items="${requestScope.list}" var="emp">
-                <tr>
-                    <td style="text-align:left; padding-left:20px;">${emp.eid}</td>
-                    <td>${emp.ename}</td>
-                    <td>${emp.phone}</td>
-                    <td>
-                        <c:if test="${emp.sex=='1'}">男</c:if>
-                        <c:if test="${emp.sex=='0'}">女</c:if>
-                    </td>
-                    <td>
-                        <fmt:formatDate value="${emp.birth}" pattern="yyyy-MM-dd"></fmt:formatDate>
-                    </td>
-
-                    <td>
-                        <div class="button-group"><a class="button border-main"
-                                                     href="EmployeeFindOneServlet?eid=${emp.eid}"><span
-                                class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
-                                                                    onclick="return del(${emp.eid})"><span
-                                class="icon-trash-o"></span> 删除</a></div>
-                    </td>
-                </tr>
-            </c:forEach>
-
-            <tr>
-                <td colspan="8">
-                    <div class="pagelist"><a href="">上一页</a> <span class="current">1</span><a href="">2</a><a
-                            href="">3</a><a href="">下一页</a><a href="">尾页</a></div>
+                <td>
+                    <div class="button-group"><a class="button border-main"
+                                                 href="EmployeeFindOneServlet?eid=${emp.eid}"><span
+                            class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)"
+                                                                onclick="return del(${emp.eid})"><span
+                            class="icon-trash-o"></span> 删除</a></div>
                 </td>
             </tr>
-        </table>
-    </div>
-</form>
+        </c:forEach>
+
+        <tr>
+            <td colspan="8">
+                <div class="pagelist"><a href="">上一页</a> <span class="current">1</span><a href="">2</a><a
+                        href="">3</a><a href="">下一页</a><a href="">尾页</a></div>
+            </td>
+        </tr>
+    </table>
+</div>
+
 <script type="text/javascript">
 
     //搜索
