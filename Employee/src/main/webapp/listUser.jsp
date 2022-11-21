@@ -20,7 +20,7 @@
                                                                            style="float:right; display:none;">添加字段</a>
     </div>
     <div class="padding border-bottom">
-        <form method="post" action="EmployeeFindAllServlet" id="listform">
+        <form method="post" action="EmployeeServlet?method=empFindAll" id="listform">
             <ul class="search" style="padding-left:10px;">
                 <li>
                     用户名:
