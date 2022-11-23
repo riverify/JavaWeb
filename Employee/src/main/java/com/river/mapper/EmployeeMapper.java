@@ -9,6 +9,7 @@ public interface EmployeeMapper {
     // 查询指定员工
     Employee selectOne(String ename, String pwd);
 
+
     // 添加员工
     int insert(Employee employee);
 
