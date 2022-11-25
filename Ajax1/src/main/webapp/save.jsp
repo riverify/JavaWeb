@@ -34,11 +34,23 @@
         }
 
         function process() {
-            // 接收响应的数据
-            var text = xhr.responseText;
+            // 准备状态４
+            if (xhr.readyState == 4) {
 
-            document.getElementById("uname_span").innerText = text;
+                // 200 状态码－成功
+                if (xhr.status == 200) {
+                    // 接收响应的数据
+                    var text = xhr.responseText;
 
+                    document.getElementById("uname_span").innerText = text;
+                } else if (xhr.status == 404) {
+                    alert("404 error");
+                } else if (xhr.status == 500) {
+                    alert("code error");
+                } else {
+                    alert("error");
+                }
+            }
         }
 
     }
