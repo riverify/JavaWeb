@@ -24,7 +24,7 @@ public class SaveServlet extends HttpServlet {
         String uname = req.getParameter("uname");
 
         // 数据处理--模拟数据库
-        Boolean flag = false;
+        boolean flag = false;
         if ("river".equals(uname)) {
             flag = true;
         }
