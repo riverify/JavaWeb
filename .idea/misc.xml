@@ -3,6 +3,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/Ajax1" />
+    <file type="web" url="file://$PROJECT_DIR$/Ajax2" />
     <file type="web" url="file://$PROJECT_DIR$/demoJsp" />
     <file type="web" url="file://$PROJECT_DIR$/Employee" />
     <file type="web" url="file://$PROJECT_DIR$/Jspdemo1" />
@@ -24,6 +25,7 @@
         <option value="$PROJECT_DIR$/MVC/pom.xml" />
         <option value="$PROJECT_DIR$/Employee/pom.xml" />
         <option value="$PROJECT_DIR$/Ajax1/pom.xml" />
+        <option value="$PROJECT_DIR$/Ajax2/pom.xml" />
       </list>
     </option>
   </component>

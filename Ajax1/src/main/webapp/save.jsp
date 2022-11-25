@@ -37,7 +37,7 @@
             // 准备状态４
             if (xhr.readyState == 4) {
 
-                // 200 状态码－成功
+                // 200 　页面状态码－成功
                 if (xhr.status == 200) {
                     // 接收响应的数据
                     var text = xhr.responseText;
