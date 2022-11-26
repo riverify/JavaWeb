@@ -1,4 +1,4 @@
-package com.river.ajax2;
+package com.river.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

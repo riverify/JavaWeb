@@ -26,6 +26,10 @@
             if (xhr.readyState == 4 && xhr.status == 200) {
                 var text = xhr.responseText;
                 console.log(text);
+                // eval("var j = " + text);
+                // console.log(j.uname);
+                var e = JSON.parse(text);  // key必须含有引号
+                console.log(e.uname);
             }
         }
 

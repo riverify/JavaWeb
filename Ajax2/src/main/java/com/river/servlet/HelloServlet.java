@@ -1,4 +1,4 @@
-package com.river.ajax2;
+package com.river.servlet;
 
 import java.io.*;
 import javax.servlet.http.*;

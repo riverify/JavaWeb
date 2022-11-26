@@ -1,4 +1,7 @@
-package com.river.ajax2;
+package com.river.servlet;
+
+import com.google.gson.Gson;
+import com.river.entity.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,6 +38,11 @@ public class AjaxServlet2 extends HttpServlet {
         // 用户响应
         // ********　普通文本  ********
 //        resp.getWriter().println("Ajax响应成功");
+
+        // ********  json  ********
+        User user = new User(1, "zs", "123");   // 模拟数据库
+        String json = new Gson().toJson(user); // gson包，转换为json格式
+        resp.getWriter().println(json);
 
 
     }
